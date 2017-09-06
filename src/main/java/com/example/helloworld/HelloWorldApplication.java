@@ -8,6 +8,8 @@ import io.dropwizard.setup.Environment;
 
 import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
+import io.swagger.annotations.SwaggerDefinition;
+import io.swagger.annotations.Info;
 
 import com.wordnik.swagger.annotations.Api;
 import com.wordnik.swagger.annotations.ApiOperation;
@@ -23,6 +25,12 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+@SwaggerDefinition(
+        info = @Info(
+                description = "A simple Google Cloud Endpoints API example.",
+                version = "1.0.0",
+                title = "Endpoints Example"),
+        host = "test.goog")
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
   public static void main(String[] args) throws Exception {
     new HelloWorldApplication().run(args);
@@ -43,7 +51,6 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
         return sampleConfiguration.swaggerBundleConfiguration;
       }
     });
-    
   }
 
   @GET
