@@ -35,7 +35,7 @@ spec:
         ]
       # [END esp]
         ports:
-          - containerPort: 8081
+          - containerPort: 8082
       - name: hello-world
         image: gcr.io/tvlk-realtime-tokyo-test/test:v1
         ports:
