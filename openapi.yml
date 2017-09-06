@@ -4,7 +4,7 @@ info:
   description: "A simple Google Cloud Endpoints API example."
   title: "Endpoints Example"
   version: "1.0.0"
-host: "echo-api.endpoints.tvlk-realtime-tokyo-test.cloud.goog"
+host: "echo-api.endpoints.<test>t.cloud.goog"
 basePath: "/"
 paths:
   /hello-world:
