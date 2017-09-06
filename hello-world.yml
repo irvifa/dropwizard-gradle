@@ -1,2 +1,4 @@
+swagger:
+  resourcePackage: com.example.helloworld
 template: Hello, %s!
 defaultName: Stranger
