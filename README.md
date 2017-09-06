@@ -9,3 +9,9 @@ To run your application:
 ```
 java -jar build/libs/dropwizard-gradle-1.0-SNAPSHOT-all.jar server hello-world.yml
 ```
+
+You could run the application using Docker with this command
+
+```
+./run.sh
+```
