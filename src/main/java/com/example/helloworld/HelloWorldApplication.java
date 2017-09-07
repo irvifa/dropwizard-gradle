@@ -10,10 +10,30 @@ import io.federecio.dropwizard.swagger.SwaggerBundle;
 import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
 import io.swagger.annotations.SwaggerDefinition;
 import io.swagger.annotations.Info;
+import io.swagger.annotations.ResponseHeader;
 
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
+//test
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiKeyAuthDefinition;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.Authorization;
+import io.swagger.annotations.AuthorizationScope;
+import io.swagger.annotations.BasicAuthDefinition;
+import io.swagger.annotations.Contact;
+import io.swagger.annotations.Extension;
+import io.swagger.annotations.ExtensionProperty;
+import io.swagger.annotations.ExternalDocs;
+import io.swagger.annotations.Info;
+import io.swagger.annotations.License;
+import io.swagger.annotations.OAuth2Definition;
+import io.swagger.annotations.ResponseHeader;
+import io.swagger.annotations.SecurityDefinition;
+import io.swagger.annotations.Tag;
+// end of test
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
@@ -30,7 +50,11 @@ import javax.ws.rs.core.Response;
                 description = "A simple Google Cloud Endpoints API example.",
                 version = "1.0.0",
                 title = "Endpoints Example"),
-        host = "test.goog")
+        host = "esp-hello-world.endpoints.tvlk-realtime-tokyo-test.cloud.goog",
+        securityDefinition = @SecurityDefinition(
+                apiKeyAuthDefinitions = {
+                        @ApiKeyAuthDefinition(key = "apiKeyAuth", name = "apiKey", in = ApiKeyAuthDefinition.ApiKeyLocation.HEADER)})
+)
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
   public static void main(String[] args) throws Exception {
     new HelloWorldApplication().run(args);

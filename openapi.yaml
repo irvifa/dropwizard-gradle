@@ -4,7 +4,10 @@ info:
   description: "A simple Google Cloud Endpoints API example."
   title: "Endpoints Example"
   version: "1.0.0"
-host: "esp-hello-world.endpoints.<project-id>.cloud.goog"
+host: "esp-hello-world.endpoints.<your-project>.cloud.goog"
+x-google-endpoints:
+    - name: "esp-hello-world.endpoints.<your-project>.cloud.goog"
+      target: "35.185.191.66"
 basePath: "/"
 paths:
   /hello-world:
@@ -34,3 +37,9 @@ definitions:
       content:
         type: "string"
         readOnly: true
+securityDefinitions:
+  # This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"

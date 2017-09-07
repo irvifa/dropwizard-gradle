@@ -2,5 +2,5 @@
  
 set -e
 TAG=nyan/test
-VERSION=v1
+VERSION=v2
 docker build -t ${TAG}:${VERSION} .
