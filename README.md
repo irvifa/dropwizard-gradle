@@ -15,3 +15,10 @@ You could run the application using Docker with this command
 ```
 ./run.sh
 ```
+
+```
+kubectl create configmap nginx-config --from-file=nginx.conf
+cd ssl
+kubectl create secret generic nginx-ssl \
+     --from-file=./nginx.crt --from-file=./nginx.key
+```

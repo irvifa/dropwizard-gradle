@@ -4,10 +4,10 @@ info:
   description: "A simple Google Cloud Endpoints API example."
   title: "Endpoints Example"
   version: "1.0.0"
-host: "esp-hello-world.endpoints.<your-project>.cloud.goog"
+host: "esp-hello-world.endpoints.tvlk-data-dev-179204.cloud.goog"
 x-google-endpoints:
-    - name: "esp-hello-world.endpoints.<your-project>.cloud.goog"
-      target: "35.185.191.66"
+    - name: "esp-hello-world.endpoints.tvlk-data-dev-179204.cloud.goog"
+      target: "35.185.177.117"
 basePath: "/"
 paths:
   /hello-world:
@@ -26,6 +26,8 @@ paths:
           schema:
             $ref: "#/definitions/Saying"
           headers: {}
+      security:
+        - api_key: []
 definitions:
   Saying:
     type: "object"
