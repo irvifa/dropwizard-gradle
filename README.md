@@ -30,7 +30,7 @@ kubectl create secret generic nginx-ssl \
 ```
 export CLUSTER_NAME=ziyou
 gcloud compute addresses create $CLUSTER_NAME-ip --region <region>
-export LB_ADDRESS_IP=$(gcloud compute addresses list | grep $CLUSTER_NAME--ip) | awk ‘{print $3}’
+export LB_ADDRESS_IP=$(gcloud compute addresses list | grep $CLUSTER_NAME-ip) | awk ‘{print $3}’
 
 gcloud container clusters create $CLUSTER_NAME --disable-addons HttpLoadBalancing --disk-size=30 --machine-type=<machine-type> --num-nodes=1
 gcloud container clusters get-credentials $CLUSTER_NAME
