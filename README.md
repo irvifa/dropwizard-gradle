@@ -7,6 +7,8 @@ To create a fat jar:
 ./gradlew shadowJar
 ```
 
+## Testing
+
 To run your application:
 ```
 java -jar build/libs/dropwizard-gradle-1.0-SNAPSHOT-all.jar server hello-world.yml
@@ -50,3 +52,5 @@ gcloud compute instances add-tags $LB_INSTANCE_NAME --tags http-server,https-ser
 kuebectl apply -f nginx-ingress-controller.yaml
 kubectl create -f container-engine-ingress.yaml
 ```
+
+
