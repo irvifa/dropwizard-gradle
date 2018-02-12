@@ -1,0 +1,9 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: dropwizard-gradle
+  namespace: dropwizard-gradle
+spec:
+  backend:
+    serviceName: dropwizard-gradle
+    servicePort: 80

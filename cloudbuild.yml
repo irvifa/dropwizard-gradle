@@ -1,0 +1,23 @@
+steps:
+- name: 'java'
+  args: ['./gradlew', 'test', 'shadowJar']
+  id: 'build jar'
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME', '.']
+  id: 'build docker'
+  waitFor: ['build jar']
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME']
+  id: 'push docker'
+  waitFor: ['build docker']
+- name: 'gcr.io/cloud-builders/kubectl'
+  args:
+  - 'set'
+  - 'image'
+  - 'deployment/dropwizard-gradle'
+  - '-n'
+  - 'dropwizard-gradle'
+  - 'dropwizard-gradle=gcr.io/$PROJECT_ID/$REPO_NAME:$TAG_NAME'
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=${CLUSTER_ZONE}' #insert cluster zone
+  - 'CLOUDSDK_CONTAINER_CLUSTER=${CLUSTER_NAME}' #insert cluster name
