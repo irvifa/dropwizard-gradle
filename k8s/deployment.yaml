@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dropwizard-gradle
+  namespace: dropwizard-gradle
+spec:
+  selector:
+    matchLabels:
+      app: dropwizard-gradle
+  template:
+    metadata:
+      labels:
+        app: dropwizard-gradle
+    spec:
+      containers:
+      - name: dropwizard-gradle
+        image: $appImage
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+            httpGet:
+              path: /hello-world
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 60
+        readinessProbe:
+          httpGet:
+            path: /hello-world
+            port: 8080
+          initialDelaySeconds: 10
+          periodSeconds: 60
