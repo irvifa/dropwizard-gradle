@@ -1,61 +1,19 @@
 package com.example.helloworld;
 
+import ch.qos.logback.classic.LoggerContext;
+import ch.qos.logback.core.util.StatusPrinter;
 import com.example.helloworld.health.TemplateHealthCheck;
 import com.example.helloworld.resources.HelloWorldResource;
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
 
-import io.federecio.dropwizard.swagger.SwaggerBundle;
-import io.federecio.dropwizard.swagger.SwaggerBundleConfiguration;
-import io.swagger.annotations.SwaggerDefinition;
-import io.swagger.annotations.Info;
-import io.swagger.annotations.ResponseHeader;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-//test
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiKeyAuthDefinition;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.annotations.Authorization;
-import io.swagger.annotations.AuthorizationScope;
-import io.swagger.annotations.BasicAuthDefinition;
-import io.swagger.annotations.Contact;
-import io.swagger.annotations.Extension;
-import io.swagger.annotations.ExtensionProperty;
-import io.swagger.annotations.ExternalDocs;
-import io.swagger.annotations.Info;
-import io.swagger.annotations.License;
-import io.swagger.annotations.OAuth2Definition;
-import io.swagger.annotations.ResponseHeader;
-import io.swagger.annotations.SecurityDefinition;
-import io.swagger.annotations.Tag;
-// end of test
-
-import javax.ws.rs.Consumes;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-
-@SwaggerDefinition(
-        info = @Info(
-                description = "A simple Google Cloud Endpoints API example.",
-                version = "1.0.0",
-                title = "Endpoints Example"),
-        host = "esp-hello-world.endpoints.tvlk-realtime-tokyo-test.cloud.goog",
-        securityDefinition = @SecurityDefinition(
-                apiKeyAuthDefinitions = {
-                        @ApiKeyAuthDefinition(key = "apiKeyAuth", name = "apiKey", in = ApiKeyAuthDefinition.ApiKeyLocation.HEADER)})
-)
 public class HelloWorldApplication extends Application<HelloWorldConfiguration> {
+  private static final Logger LOGGER = LoggerFactory.getLogger(HelloWorldApplication.class);
+
   public static void main(String[] args) throws Exception {
     new HelloWorldApplication().run(args);
   }
@@ -68,21 +26,11 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
   @Override
   public void initialize(Bootstrap<HelloWorldConfiguration> bootstrap) {
     // nothing to do yet
-    bootstrap.addBundle(new SwaggerBundle<HelloWorldConfiguration>() {
-      @Override
-      protected SwaggerBundleConfiguration getSwaggerBundleConfiguration(HelloWorldConfiguration sampleConfiguration) {
-        // this would be the preferred way to set up swagger, you can also construct the object here programtically if you want
-        return sampleConfiguration.swaggerBundleConfiguration;
-      }
-    });
   }
 
-  @GET
-  @ApiOperation("Sample endpoint with query param")
-  @Path("/hello-world")
   @Override
   public void run(HelloWorldConfiguration configuration,
-                  Environment environment) {
+                  Environment environment) throws Exception {
     final HelloWorldResource resource = new HelloWorldResource(
         configuration.getTemplate(),
         configuration.getDefaultName()
@@ -92,6 +40,4 @@ public class HelloWorldApplication extends Application<HelloWorldConfiguration> 
     environment.healthChecks().register("template", healthCheck);
     environment.jersey().register(resource);
   }
-
-
 }
