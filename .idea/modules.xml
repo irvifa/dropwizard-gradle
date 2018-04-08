@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/dropwizard-gradle.iml" filepath="$PROJECT_DIR$/dropwizard-gradle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dropwizard-gradle_main.iml" filepath="$PROJECT_DIR$/.idea/modules/dropwizard-gradle_main.iml" group="dropwizard-gradle" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/dropwizard-gradle_test.iml" filepath="$PROJECT_DIR$/.idea/modules/dropwizard-gradle_test.iml" group="dropwizard-gradle" />
     </modules>
   </component>
 </project>
